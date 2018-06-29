@@ -23,8 +23,8 @@ class Home extends React.Component{
                 <br/>
                     <div style={{ height: '800px' }}>
                         <div style={insideStyles}>
-                            <Typing speed={75}>
-                                <span className="animatedTitle"><h1>I'm Arun, welcome to my website!</h1></span>
+                            <Typing speed={75} delay={100}>
+                                <span className="animatedTitle"><h1>Hi, I'm Arun. I'm from Toronto, and I love to code.</h1></span>
                             </Typing>
                         </div>
                     </div>

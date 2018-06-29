@@ -10,13 +10,20 @@ const Projects = () => (
                     <List.Icon name='github' size='large' verticalAlign='middle' />
                     <List.Content>
                         <List.Header style={{color: 'white'}}>
-                            {<a target="_blank" href='https://github.com/arunthaya/School-Website-Crawler'>School Page Parser</a>}
-                            </List.Header>
-                        A web application that takes a link, and retrieves most relevant information and displays it on the application.
+                            {<a target="_blank" href='https://github.com/arunthaya/react_based_portfolio'>This website!</a>}
+                        </List.Header>
+                        Check out the code I wrote in React, to make this website a reality!
                     </List.Content>
                 </List.Item>
-            </List>
-            <List divided relaxed>
+                <List.Item>
+                    <List.Icon name='github' size='large' verticalAlign='middle' />
+                    <List.Content>
+                        <List.Header style={{color: 'white'}}>
+                            {<a target="_blank" href='https://github.com/arunthaya/School-Website-Crawler'>School Page Parser</a>}
+                            </List.Header>
+                        A web application that crawls school websites, and retrieves most relevant information and displays it on the application.
+                    </List.Content>
+                </List.Item>
                 <List.Item>
                     <List.Icon name='github' size='large' verticalAlign='middle' />
                     <List.Content>
@@ -26,8 +33,6 @@ const Projects = () => (
                         A simple web application that checks to see if inputted zip code is a valid zip code out of the possible 43555 zips.
                     </List.Content>
                 </List.Item>
-            </List>
-            <List divided relaxed>
                 <List.Item>
                     <List.Icon name='github' size='large' verticalAlign='middle' />
                     <List.Content>
@@ -39,6 +44,8 @@ const Projects = () => (
                 </List.Item>
             </List>
         </Segment>
+
+
     </Container>
 );
 
