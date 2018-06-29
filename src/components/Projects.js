@@ -1,9 +1,9 @@
 import React from 'react';
-import { List, Segment, Button, Icon } from 'semantic-ui-react';
+import { List, Segment, Button, Icon, Container } from 'semantic-ui-react';
 
 const Projects = () => (
-    <Segment inverted>
-        <div style={{marginLeft: '1.5%'}}>
+    <Container>
+        <Segment inverted>
             <h1>Projects I am proud of:</h1>
             <List divided relaxed>
                 <List.Item>
@@ -38,8 +38,8 @@ const Projects = () => (
                     </List.Content>
                 </List.Item>
             </List>
-        </div>
-    </Segment>
+        </Segment>
+    </Container>
 );
 
 export default Projects;
