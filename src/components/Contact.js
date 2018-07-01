@@ -2,6 +2,13 @@ import React from 'react';
 import { Form, Container, Message } from 'semantic-ui-react';
 import Modal from 'react-responsive-modal';
 
+//Chunk of code taken from Netlify to allow processing of forms
+const encode = (data) => {
+    return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+};
+
 class Contact extends React.Component {
     state = {
         name: '',
@@ -42,7 +49,7 @@ class Contact extends React.Component {
         console.log(this.state);
     };
 
-    handleSubmit = () => {
+    handleSubmit = (e) => {
         const {name, email, message} = this.state;
         let errorBool = false;
         if(name == ''){
@@ -58,6 +65,13 @@ class Contact extends React.Component {
             errorBool = true;
         }
         if(!errorBool){
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: encode({ "form-name": "contact", ...this.state })
+            }).then(() => alert("Success!"))
+                .catch(error => alert(error));
+            e.preventDefault();
             this.setState({
                 name: '',
                 email: '',

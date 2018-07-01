@@ -16,8 +16,8 @@ class Home extends React.Component{
             <div className="main-content">
                 <Parallax
                     bgImage={require('../images/toronto.jpg')}
-                    bgImageAlt="Markham"
-                    strength={100}
+                    bgImageAlt="Toronto"
+                    strength={200}
                     blur={{ min: -15, max: 15}}
                 >
                 <br/>
