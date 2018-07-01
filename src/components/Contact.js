@@ -128,13 +128,17 @@ class Contact extends React.Component {
                         </Form.Group>
                         <Form.TextArea placeholder='Message' name='message' value={message} onChange={this.handleChange} error={messageError}/>
                         {/*Possibly remove chunk*/}
-                        <Recaptcha
-                            ref="recaptcha"
-                            sitekey={RECAPTCHA_KEY}
-                            theme="dark"
-                            onChange={this.handleRecaptcha} />
+                        <div style={{borderColor: 'black', border: '0px'}}>
+                            <Recaptcha
+                                ref="recaptcha"
+                                sitekey={RECAPTCHA_KEY}
+                                theme="dark"
+                                onChange={this.handleRecaptcha} />
+                        </div>
                         {/*END OF REMOVAL*/}
-                        <Form.Button>Submit</Form.Button>
+                        <div style={{marginTop: '5px'}}>
+                            <Form.Button>Submit</Form.Button>
+                        </div>
                         {formError && (
                             <Form error>
                                 <Message error header='Form errors' content={errorMessage}/>
