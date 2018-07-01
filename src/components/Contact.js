@@ -30,7 +30,6 @@ class Contact extends React.Component {
     };
 
     handleChange = (e, {name, value}) => {
-        console.log(`name coming in is ${name} and the value is: ${value}`);
         this.setState({ [name]: value});
         let variableBeingEntered = name;
         switch(variableBeingEntered){
@@ -46,7 +45,6 @@ class Contact extends React.Component {
             default:
                 console.log('Critical error, should never reach this point');
         }
-        console.log(this.state);
     };
 
     handleSubmit = (e) => {
@@ -69,7 +67,7 @@ class Contact extends React.Component {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: encode({ "form-name": "contact", ...this.state })
-            }).then(() => alert("Success!"))
+            }).then(() => this.onOpenModal())
                 .catch(error => alert(error));
             e.preventDefault();
             this.setState({
@@ -81,7 +79,7 @@ class Contact extends React.Component {
                 messageError: false,
                 formError: false,
             });
-            this.onOpenModal();
+            //this.onOpenModal();
         } else {
             this.setState({ formError: true });
         }
@@ -108,7 +106,7 @@ class Contact extends React.Component {
                     </Form>
                 </Container>
                 <Modal open={open} onClose={this.onCloseModal} center>
-                    <h1>Form Successfully Submitted!</h1>
+                    <h1>Form Successfully Submitted! &nbsp </h1>
                     <p>Expect a response in 48 hours. This form was coded by hand :)</p>
                 </Modal>
             </div>
