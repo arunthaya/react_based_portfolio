@@ -22,7 +22,8 @@ class Contact extends React.Component {
         emailError: false,
         messageError: false,
         formError: false,
-        open: false
+        open: false,
+        "g-recaptcha-response": '',
     };
 
     onOpenModal = () => {
@@ -35,7 +36,8 @@ class Contact extends React.Component {
 
     //possibly remove
     handleRecaptcha = value => {
-        console.log(`state before processing ${this.state}`);
+        console.log('before changing state');
+        console.log(this.state)
         this.setState({ "g-recaptcha-response": value });
         console.log(this.state);
     };
