@@ -1,6 +1,10 @@
 import React from 'react';
 import { Form, Container, Message } from 'semantic-ui-react';
 import Modal from 'react-responsive-modal';
+import Recaptcha from "react-google-recaptcha";
+
+//possibly remove
+const RECAPTCHA_KEY = process.env.SITE_RECAPTCHA_KEY;
 
 //Chunk of code taken from Netlify to allow processing of forms
 const encode = (data) => {
@@ -28,6 +32,12 @@ class Contact extends React.Component {
     onCloseModal = () => {
         this.setState({ open: false});
     };
+
+    //possibly remove
+    handleRecaptcha = value => {
+        this.setState({ "g-recaptcha-response": value });
+    };
+    //
 
     handleChange = (e, {name, value}) => {
         this.setState({ [name]: value});
@@ -103,10 +113,16 @@ class Contact extends React.Component {
                                 <Message error header='Form errors' content={`Double check all input(s) in red`}/>
                             </Form>
                         )}
+                        {/*Possibly remove chunk*/}
+                        <Recaptcha
+                            ref="recaptcha"
+                            sitekey={RECAPTCHA_KEY}
+                            onChange={this.handleRecaptcha} />
+                        {/*END OF REMOVAL*/}
                     </Form>
                 </Container>
                 <Modal open={open} onClose={this.onCloseModal} center>
-                    <h1>Form Successfully Submitted! &nbsp </h1>
+                    <h1>Form Successfully Submitted! </h1>
                     <p>Expect a response in 48 hours. This form was coded by hand :)</p>
                 </Modal>
             </div>
