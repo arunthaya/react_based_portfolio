@@ -35,6 +35,7 @@ class Contact extends React.Component {
 
     //possibly remove
     handleRecaptcha = value => {
+        console.log(`state before processing ${this.state}`);
         this.setState({ "g-recaptcha-response": value });
         console.log(this.state);
     };
