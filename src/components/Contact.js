@@ -3,8 +3,14 @@ import { Form, Container, Message } from 'semantic-ui-react';
 import Modal from 'react-responsive-modal';
 import Recaptcha from "react-google-recaptcha";
 
-//possibly remove
+//public key for the form
 const RECAPTCHA_KEY = "6LdGg2EUAAAAAPK1NUvJ3UCeR2H-6oMdpFyEBJXu";
+
+//Validate email function taken from: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+const validateEmail = (email) => {
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+};
 
 //Chunk of code taken from Netlify to allow processing of forms
 const encode = (data) => {
@@ -35,14 +41,15 @@ class Contact extends React.Component {
         this.setState({ open: false});
     };
 
-    //possibly remove
     handleRecaptcha = value => {
-        console.log('before changing state');
-        console.log(this.state)
         this.setState({ "g-recaptcha-response": value });
-        console.log(this.state);
+        let recaptchaValue = this.state['g-recaptcha-response'];
+        if(recaptchaValue == '' || recaptchaValue === '' || recaptchaValue == null || recaptchaValue === null){
+            this.setState({ formError: true, errorMessage: 'Please complete the recaptcha. '});
+        } else {
+            this.setState({ formError: false, errorMessage: ''});
+        }
     };
-    //
 
     handleChange = (e, {name, value}) => {
         this.setState({ [name]: value});
@@ -73,7 +80,7 @@ class Contact extends React.Component {
             errorMessage += 'Please input a name. ';
             errorBool = true;
         }
-        if(email == '' || !email.includes('@')){
+        if(email == '' || !validateEmail(email)){
             this.setState({ emailError: true});
             errorMessage += 'Please input a valid email. ';
             errorBool = true;
@@ -83,8 +90,8 @@ class Contact extends React.Component {
             errorMessage += 'Please input a message. ';
             errorBool = true;
         }
-        if(recaptchaValue == '' || recaptchaValue == null){
-            errorMessage += 'Please complete the recaptcha';
+        if(recaptchaValue == '' || recaptchaValue === '' || recaptchaValue == null || recaptchaValue === null){
+            errorMessage += 'Please complete the recaptcha. ';
             errorBool = true;
         }
         if(!errorBool){
@@ -131,7 +138,7 @@ class Contact extends React.Component {
                             ref="recaptcha"
                             sitekey={RECAPTCHA_KEY}
                             onChange={this.handleRecaptcha} />
-                        <div style={{marginTop: '5px'}}>
+                        <div style={{marginTop: '10px'}}>
                             <Form.Button>Submit</Form.Button>
                         </div>
                         {formError && (
