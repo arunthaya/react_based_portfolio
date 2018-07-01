@@ -8,7 +8,7 @@ const RECAPTCHA_KEY = "6LdGg2EUAAAAAPK1NUvJ3UCeR2H-6oMdpFyEBJXu";
 
 //Validate email function taken from: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
 const validateEmail = (email) => {
-    console.log('Entered validateEmail')
+    console.log('Entered validateEmail');
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     console.log(`The result from the test is: ${re.test(String(email).toLowerCase())}`);
     return re.test(String(email).toLowerCase());
@@ -153,7 +153,7 @@ class Contact extends React.Component {
                 </Container>
                 <Modal open={open} onClose={this.onCloseModal} center>
                     <h1>Form Successfully Submitted! </h1>
-                    <p>Expect a response in 48 hours. This form was coded by hand :)</p>
+                    <p>This form was created by Arun Thayanithy. </p>
                 </Modal>
             </div>
         );
