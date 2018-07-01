@@ -23,6 +23,7 @@ class Contact extends React.Component {
         messageError: false,
         formError: false,
         open: false,
+        errorMessage: '',
         "g-recaptcha-response": '',
     };
 
@@ -63,20 +64,31 @@ class Contact extends React.Component {
 
     handleSubmit = (e) => {
         const {name, email, message} = this.state;
+        const recaptchaValue = this.state['g-recaptcha-response'];
         let errorBool = false;
+        let errorMessage = '';
+        //bottom chunk of if statements check each individual form element before submission
         if(name == ''){
             this.setState({nameError: true});
+            errorMessage += 'Please input a name. ';
             errorBool = true;
         }
         if(email == '' || !email.includes('@')){
             this.setState({ emailError: true});
+            errorMessage += 'Please input a valid email. ';
             errorBool = true;
         }
         if(message == ''){
             this.setState({ messageError: true});
+            errorMessage += 'Please input a message. ';
+            errorBool = true;
+        }
+        if(recaptchaValue == '' || recaptchaValue == null){
+            errorMessage += 'Please complete the recaptcha';
             errorBool = true;
         }
         if(!errorBool){
+            //no errors in form
             fetch("/", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -92,15 +104,19 @@ class Contact extends React.Component {
                 emailError: false,
                 messageError: false,
                 formError: false,
+                errorMessage: ''
             });
-            //this.onOpenModal();
         } else {
-            this.setState({ formError: true });
+            //errors in form
+            this.setState({
+                formError: true,
+                errorMessage: errorMessage
+            });
         }
     };
 
     render(){
-        const {name, email, message, nameError, emailError, messageError, formError, formSuccess, open} = this.state;
+        const {name, email, message, nameError, emailError, messageError, formError, formSuccess, open, errorMessage} = this.state;
         return(
             <div>
                 <Container>
@@ -115,12 +131,13 @@ class Contact extends React.Component {
                         <Recaptcha
                             ref="recaptcha"
                             sitekey={RECAPTCHA_KEY}
+                            theme="dark"
                             onChange={this.handleRecaptcha} />
                         {/*END OF REMOVAL*/}
                         <Form.Button>Submit</Form.Button>
                         {formError && (
                             <Form error>
-                                <Message error header='Form errors' content={`Double check all input(s) in red`}/>
+                                <Message error header='Form errors' content={errorMessage}/>
                             </Form>
                         )}
                     </Form>
