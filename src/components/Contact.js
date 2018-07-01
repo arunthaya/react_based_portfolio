@@ -4,7 +4,7 @@ import Modal from 'react-responsive-modal';
 import Recaptcha from "react-google-recaptcha";
 
 //possibly remove
-const RECAPTCHA_KEY = process.env.SITE_RECAPTCHA_KEY;
+const RECAPTCHA_KEY = "6LdGg2EUAAAAAPK1NUvJ3UCeR2H-6oMdpFyEBJXu";
 
 //Chunk of code taken from Netlify to allow processing of forms
 const encode = (data) => {
