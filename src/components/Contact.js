@@ -36,6 +36,7 @@ class Contact extends React.Component {
     //possibly remove
     handleRecaptcha = value => {
         this.setState({ "g-recaptcha-response": value });
+        console.log(this.state);
     };
     //
 
@@ -107,18 +108,18 @@ class Contact extends React.Component {
                             <Form.Input placeholder='Email' name='email' value={email} onChange={this.handleChange} error={emailError}/>
                         </Form.Group>
                         <Form.TextArea placeholder='Message' name='message' value={message} onChange={this.handleChange} error={messageError}/>
-                        <Form.Button>Submit</Form.Button>
-                        {formError && (
-                            <Form error>
-                                <Message error header='Form errors' content={`Double check all input(s) in red`}/>
-                            </Form>
-                        )}
                         {/*Possibly remove chunk*/}
                         <Recaptcha
                             ref="recaptcha"
                             sitekey={RECAPTCHA_KEY}
                             onChange={this.handleRecaptcha} />
                         {/*END OF REMOVAL*/}
+                        <Form.Button>Submit</Form.Button>
+                        {formError && (
+                            <Form error>
+                                <Message error header='Form errors' content={`Double check all input(s) in red`}/>
+                            </Form>
+                        )}
                     </Form>
                 </Container>
                 <Modal open={open} onClose={this.onCloseModal} center>
