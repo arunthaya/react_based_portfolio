@@ -127,15 +127,10 @@ class Contact extends React.Component {
                             <Form.Input placeholder='Email' name='email' value={email} onChange={this.handleChange} error={emailError}/>
                         </Form.Group>
                         <Form.TextArea placeholder='Message' name='message' value={message} onChange={this.handleChange} error={messageError}/>
-                        {/*Possibly remove chunk*/}
-                        <div style={{borderColor: 'black', border: '0px'}}>
-                            <Recaptcha
-                                ref="recaptcha"
-                                sitekey={RECAPTCHA_KEY}
-                                theme="dark"
-                                onChange={this.handleRecaptcha} />
-                        </div>
-                        {/*END OF REMOVAL*/}
+                        <Recaptcha
+                            ref="recaptcha"
+                            sitekey={RECAPTCHA_KEY}
+                            onChange={this.handleRecaptcha} />
                         <div style={{marginTop: '5px'}}>
                             <Form.Button>Submit</Form.Button>
                         </div>
