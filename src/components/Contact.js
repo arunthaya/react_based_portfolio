@@ -8,7 +8,9 @@ const RECAPTCHA_KEY = "6LdGg2EUAAAAAPK1NUvJ3UCeR2H-6oMdpFyEBJXu";
 
 //Validate email function taken from: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
 const validateEmail = (email) => {
+    console.log('Entered validateEmail')
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    console.log(`The result from the test is: ${re.test(String(email).toLowerCase())}`);
     return re.test(String(email).toLowerCase());
 };
 
@@ -72,6 +74,7 @@ class Contact extends React.Component {
     handleSubmit = (e) => {
         const {name, email, message} = this.state;
         const recaptchaValue = this.state['g-recaptcha-response'];
+        let emailResponseBool = validateEmail(email);
         let errorBool = false;
         let errorMessage = '';
         //bottom chunk of if statements check each individual form element before submission
@@ -80,7 +83,7 @@ class Contact extends React.Component {
             errorMessage += 'Please input a name. ';
             errorBool = true;
         }
-        if(email == '' || !validateEmail(email)){
+        if(email == '' || !emailResponseBool){
             this.setState({ emailError: true});
             errorMessage += 'Please input a valid email. ';
             errorBool = true;
