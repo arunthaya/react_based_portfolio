@@ -11,7 +11,7 @@ const Header = () => (
                 <Menu.Item as={Nav} to="/" name="home" className="cool-link"/>
                 <Menu.Item as={Nav} to="/projects" name="projects"/>
                 {/*<Menu.Item as={Nav} to="/sample" name="resume"/>*/}
-                <Menu.Item as={Nav} to="/contact" name="contact"/>
+                {/*<Menu.Item as={Nav} to="/contact" name="contact"/>*/}
                 <Menu.Menu position='right'>
                     <Menu.Item target="_blank" href='https://github.com/arunthaya'>
                         <Icon name='github' size='large'/>
