@@ -3,7 +3,7 @@ import { Form, Container, Message } from 'semantic-ui-react';
 import Modal from 'react-responsive-modal';
 import Recaptcha from "react-google-recaptcha";
 
-//public key for the form
+//public key for  the form
 const RECAPTCHA_KEY = "6LdGg2EUAAAAAPK1NUvJ3UCeR2H-6oMdpFyEBJXu";
 
 //Validate email function taken from: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
