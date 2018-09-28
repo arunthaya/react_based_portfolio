@@ -6,6 +6,15 @@ const Projects = () => (
         <Segment inverted>
             <h1>Projects I am proud of:</h1>
             <List divided relaxed>
+            <List.Item>
+                <List.Icon name='github' size='large' verticalAlign='middle' />
+                <List.Content>
+                    <List.Header style={{color: 'white'}}>
+                        {<a target="_blank" href='https://chrome.google.com/webstore/detail/unofficial-ratemyprof-ext/jccoieblappbaibhbmlfopbpbhjjhpen'>Unofficial RateMyProf Extension (Ontario Edition)</a>}
+                    </List.Header>
+                    A Google Chrome Extension that uses a Node.js + MongoDB background to help users quickly retrieve professor ratings!
+                </List.Content>
+            </List.Item>
                 <List.Item>
                     <List.Icon name='github' size='large' verticalAlign='middle' />
                     <List.Content>
